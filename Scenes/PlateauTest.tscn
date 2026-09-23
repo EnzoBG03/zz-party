@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://8gxqg3m1hi6q"]
+
+[ext_resource type="Script" path="res://Scripts/Core/BoardPath.cs" id="1_ssgci"]
+
+[sub_resource type="Curve3D" id="Curve3D_066nd"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, -2, 0, 0, 0, 0, 0, 0, 4, -1, -2, 0, 0, 0, 0, 0, 0, 4.30322, -0.267314, -2.18445),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="PlateauTest" type="Node3D"]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_066nd")
+script = ExtResource("1_ssgci")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]

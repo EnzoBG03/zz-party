@@ -5,10 +5,10 @@ namespace ZZParty;
 
 public partial class DiceRoller : Node
 {
-    private Random _random = new Random();
+	private Random _random = new Random();
 
-    public int LancerDe()
-    {
-        return _random.Next(1, 7);
-    }
+	public int LancerDe()
+	{
+		return _random.Next(1, 7);
+	}
 }
