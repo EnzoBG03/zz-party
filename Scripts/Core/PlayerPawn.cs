@@ -14,8 +14,14 @@ public partial class PlayerPawn : Node3D
 
         if (CheminPlateau != null)
         {
-            Vector3 destination = CheminPlateau.ObtenirPositionCase(IndexCaseActuelle);
-            GetTree().CreateTween().TweenProperty(this, "global_position", destination, 0.5f);
+            float distanceDepart = (IndexCaseActuelle - nombreCases) * CheminPlateau.DistanceEntreCases;
+            float distanceArrivee = IndexCaseActuelle * CheminPlateau.DistanceEntreCases;
+            GetTree().CreateTween().TweenMethod(Callable.From<float>(MettreAJourPositionSurCourbe), distanceDepart, distanceArrivee, 0.5f * nombreCases);
         }
+    }
+
+    private void MettreAJourPositionSurCourbe(float distance)
+    {
+        GlobalPosition = CheminPlateau.Curve.SampleBaked(distance);
     }
 }
