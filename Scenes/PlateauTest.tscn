@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://8gxqg3m1hi6q"]
+[gd_scene load_steps=6 format=3 uid="uid://8gxqg3m1hi6q"]
 
 [ext_resource type="Script" path="res://Scripts/Core/BoardPath.cs" id="1_ssgci"]
+[ext_resource type="Script" path="res://Scripts/Core/PlayerPawn.cs" id="2_cxjsf"]
+[ext_resource type="Script" path="res://Scripts/Core/DiceRoller.cs" id="3_53ovo"]
+[ext_resource type="Script" path="res://Scripts/Core/TestPhase1.cs" id="4_fwrlg"]
 
 [sub_resource type="Curve3D" id="Curve3D_066nd"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, -2, 0, 0, 0, 0, 0, 0, 4, -1, -2, 0, 0, 0, 0, 0, 0, 4.30322, -0.267314, -2.18445),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, -2, 0, 0, 0, 0, 0, 0, 4, -1, -2, 0, 0, 0, 0, 0, 0, 6, 0, -2, 0, 0, 0, 0, 0, 0, 7.54897, -0.659609, -2.02615, 0, 0, 0, 0, 0, 0, 8.0197, -1.78583, -1.57298, 0, 0, 0, 0, 0, 0, 9.90834, -1.11546, -2.33937, 0, 0, 0, 0, 0, 0, 9.50153, 0.091204, -2.84725),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 4
+point_count = 8
 
 [node name="PlateauTest" type="Node3D"]
 
@@ -15,4 +18,17 @@ point_count = 4
 curve = SubResource("Curve3D_066nd")
 script = ExtResource("1_ssgci")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." node_paths=PackedStringArray("CheminPlateau")]
+script = ExtResource("2_cxjsf")
+CheminPlateau = NodePath("../Path3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.914537, 0.404503, 0, -0.404503, 0.914537, 0, 5, 10)
+
+[node name="De" type="Node" parent="."]
+script = ExtResource("3_53ovo")
+
+[node name="Testeur" type="Node" parent="." node_paths=PackedStringArray("MonDe", "MonJoueur")]
+script = ExtResource("4_fwrlg")
+MonDe = NodePath("../De")
+MonJoueur = NodePath("../CSGBox3D")
