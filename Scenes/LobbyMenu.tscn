@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://y55rt0eg8684"]
+
+[ext_resource type="Script" path="res://Scripts/UI/LobbyUI.cs" id="1_2b0qb"]
+[ext_resource type="Script" path="res://Scripts/Core/MatchmakingManager.cs" id="2_ko4nn"]
+
+[node name="LobbyMenu" type="Control" node_paths=PackedStringArray("LabelCodeSalon", "Matchmaking")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2b0qb")
+LabelCodeSalon = NodePath("Label")
+Matchmaking = NodePath("MatchmakingSystem")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 165.0
+offset_right = 608.0
+offset_bottom = 196.0
+text = "Créer un salon"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 246.0
+offset_right = 618.0
+offset_bottom = 269.0
+text = "Code du salon : ----"
+
+[node name="MatchmakingSystem" type="Node" parent="."]
+script = ExtResource("2_ko4nn")
+
+[connection signal="pressed" from="Button" to="." method="OnBoutonCreerPresse"]
