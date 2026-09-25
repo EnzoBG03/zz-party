@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlac8fqksgfk6"]
+
+[ext_resource type="Script" path="res://Scripts/UI/MainMenuUI.cs" id="1_88mrk"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_88mrk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 68.0
+offset_right = 636.0
+offset_bottom = 114.0
+text = "ZZ Party"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoutonJouer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 237.0
+offset_right = 530.0
+offset_bottom = 268.0
+text = "Jouer"
+
+[node name="BoutonQuitter" type="Button" parent="."]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 238.0
+offset_right = 682.0
+offset_bottom = 269.0
+text = "Quitter"
+
+[connection signal="pressed" from="BoutonJouer" to="." method="OnBoutonJouerPresse"]
+[connection signal="pressed" from="BoutonQuitter" to="." method="OnBoutonQuitterPresse"]
