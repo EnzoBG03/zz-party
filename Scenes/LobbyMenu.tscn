@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://y55rt0eg8684"]
+[gd_scene load_steps=4 format=3 uid="uid://y55rt0eg8684"]
 
 [ext_resource type="Script" path="res://Scripts/UI/LobbyUI.cs" id="1_2b0qb"]
 [ext_resource type="Script" path="res://Scripts/Core/MatchmakingManager.cs" id="2_ko4nn"]
+[ext_resource type="Script" path="res://Scripts/UI/BoardSelectionUI.cs" id="3_fy1sy"]
 
 [node name="LobbyMenu" type="Control" node_paths=PackedStringArray("LabelCodeSalon", "Matchmaking")]
 layout_mode = 3
@@ -17,20 +18,42 @@ Matchmaking = NodePath("MatchmakingSystem")
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 487.0
-offset_top = 165.0
+offset_top = 378.0
 offset_right = 608.0
-offset_bottom = 196.0
+offset_bottom = 409.0
 text = "Créer un salon"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 475.0
-offset_top = 246.0
-offset_right = 618.0
-offset_bottom = 269.0
+offset_left = 476.0
+offset_top = 429.0
+offset_right = 619.0
+offset_bottom = 452.0
 text = "Code du salon : ----"
 
 [node name="MatchmakingSystem" type="Node" parent="."]
 script = ExtResource("2_ko4nn")
 
+[node name="CarrouselPlateaux" type="HBoxContainer" parent="." node_paths=PackedStringArray("LabelNomPlateau")]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 127.0
+offset_right = 716.0
+offset_bottom = 316.0
+script = ExtResource("3_fy1sy")
+LabelNomPlateau = NodePath("NomPlateauDisplay")
+
+[node name="BoutonPrecedent" type="Button" parent="CarrouselPlateaux"]
+layout_mode = 2
+text = "<"
+
+[node name="NomPlateauDisplay" type="Label" parent="CarrouselPlateaux"]
+layout_mode = 2
+
+[node name="BoutonSuivant" type="Button" parent="CarrouselPlateaux"]
+layout_mode = 2
+text = ">"
+
 [connection signal="pressed" from="Button" to="." method="OnBoutonCreerPresse"]
+[connection signal="pressed" from="CarrouselPlateaux/BoutonPrecedent" to="CarrouselPlateaux" method="OnBoutonPrecedentPresse"]
+[connection signal="pressed" from="CarrouselPlateaux/BoutonSuivant" to="CarrouselPlateaux" method="OnBoutonSuivantPresse"]
